@@ -44,9 +44,9 @@ const SENDER_STYLES: Record<
     label: "Assistant",
     icon: Bot,
     avatarRing:
-      "bg-gradient-to-br from-violet-500/30 to-fuchsia-500/20 text-violet-200 ring-1 ring-violet-400/30",
-    accentBar: "before:bg-violet-500/40",
-    headerText: "text-violet-200",
+      "bg-gradient-to-br from-accent/30 to-fuchsia-500/20 text-accent ring-1 ring-accent/30",
+    accentBar: "before:bg-accent/40",
+    headerText: "text-accent",
   },
   orchestrator: {
     label: "Main agent",
@@ -123,7 +123,7 @@ function SessionEventRow({ title, timestamp }: { title?: string; timestamp: stri
   return (
     <div className="flex items-center justify-center py-1">
       <div className="inline-flex items-center gap-2 text-[11px] text-gray-400 bg-surface-2/70 border border-surface-3 rounded-full px-3 py-1 max-w-full">
-        <Pencil className="w-3 h-3 text-violet-300/70 flex-shrink-0" />
+        <Pencil className="w-3 h-3 text-accent/70 flex-shrink-0" />
         <span className="text-gray-500">Renamed session →</span>
         <span className="text-gray-200 font-medium truncate">{title || "(untitled)"}</span>
         {timestamp && (
@@ -207,11 +207,11 @@ function renderSegment(seg: TuiSegment, key: number): React.ReactNode {
         <CollapsibleBlock
           key={key}
           text={seg.text}
-          icon={<ScrollText className="w-3.5 h-3.5 text-violet-400/60 flex-shrink-0" />}
+          icon={<ScrollText className="w-3.5 h-3.5 text-accent/60 flex-shrink-0" />}
           title="Persisted output"
-          borderClass="border-violet-500/20"
-          bgClass="bg-violet-500/5"
-          textClass="text-violet-300/80"
+          borderClass="border-accent/20"
+          bgClass="bg-accent/5"
+          textClass="text-accent/80"
         />
       );
     case "text": {

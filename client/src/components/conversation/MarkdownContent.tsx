@@ -277,7 +277,7 @@ function renderInline(text: string, baseKey = ""): React.ReactNode[] {
           href={linkM[2]!}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-violet-300 hover:text-violet-200 underline underline-offset-2 decoration-violet-400/40 hover:decoration-violet-300/70"
+          className="text-accent hover:text-accent-hover underline underline-offset-2 decoration-accent/40 hover:decoration-accent/70"
         >
           {renderInline(linkM[1]!, `${baseKey}-l${n}`)}
         </a>
@@ -294,7 +294,7 @@ function renderInline(text: string, baseKey = ""): React.ReactNode[] {
           href={urlM[0]}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-violet-300 hover:text-violet-200 underline underline-offset-2 decoration-violet-400/40 hover:decoration-violet-300/70 break-all"
+          className="text-accent hover:text-accent-hover underline underline-offset-2 decoration-accent/40 hover:decoration-accent/70 break-all"
         >
           {urlM[0]}
         </a>
@@ -383,7 +383,7 @@ export function MarkdownContent({ text, dense = false }: MarkdownContentProps) {
               );
             }
             return (
-              <ul key={idx} className="list-disc pl-5 space-y-1 marker:text-violet-400/60">
+              <ul key={idx} className="list-disc pl-5 space-y-1 marker:text-accent/60">
                 {b.items.map((item, i) => (
                   <li key={i} className="text-sm text-gray-300">
                     {renderListItem(item, `li${idx}-${i}`)}
@@ -396,7 +396,7 @@ export function MarkdownContent({ text, dense = false }: MarkdownContentProps) {
             return (
               <blockquote
                 key={idx}
-                className="relative border-l-2 border-violet-400/50 pl-3 pr-2 py-1 text-gray-400 italic bg-violet-500/[0.04] rounded-r"
+                className="relative border-l border-accent/30 pl-3 pr-2 py-1 text-ink-muted italic bg-accent/[0.04] rounded-r"
               >
                 {renderInline(b.text, `q${idx}`)}
               </blockquote>

@@ -93,18 +93,14 @@ export function AgentCard({ agent, session, label, onClick }: AgentCardProps) {
     <div
       onClick={handleClick}
       className={`card-hover p-4 cursor-pointer overflow-hidden ${
-        isWaiting
-          ? "border-l-2 border-l-yellow-500/60"
-          : isActive
-            ? "border-l-2 border-l-emerald-500/50"
-            : ""
+        isWaiting ? "bg-amber-500/[0.04]" : isActive ? "bg-teal-500/[0.04]" : ""
       }`}
     >
       <div className="flex items-start justify-between gap-2 mb-3 min-w-0">
         <div className="flex items-center gap-2.5 min-w-0 overflow-hidden">
           <div
             className={`w-7 h-7 rounded-md flex items-center justify-center flex-shrink-0 ${
-              isMain ? "bg-accent/15 text-accent" : "bg-violet-500/15 text-violet-400"
+              isMain ? "bg-accent/15 text-accent" : "bg-surface-4 text-ink-muted"
             }`}
           >
             {isMain ? <Bot className="w-3.5 h-3.5" /> : <GitBranch className="w-3.5 h-3.5" />}

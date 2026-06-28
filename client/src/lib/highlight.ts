@@ -612,7 +612,7 @@ export function tokenClass(type: TokenType): string {
     case "number":
       return "text-orange-300";
     case "keyword":
-      return "text-violet-300";
+      return "text-accent";
     case "builtin":
       return "text-sky-300";
     case "function":
@@ -636,7 +636,7 @@ export function tokenClass(type: TokenType): string {
     case "diff-del":
       return "text-red-300 bg-red-500/10";
     case "diff-meta":
-      return "text-violet-300";
+      return "text-accent";
     case "plain":
     default:
       return "text-gray-200";

@@ -37,12 +37,12 @@ export interface ToolStyle {
   border: string;
 }
 
-const VIOLET: ToolStyle = {
+const DEFAULT_STYLE: ToolStyle = {
   Icon: Wrench,
-  text: "text-violet-300",
-  chip: "bg-violet-500/15 text-violet-300",
-  bar: "bg-violet-500/60",
-  border: "border-violet-500/20",
+  text: "text-accent",
+  chip: "bg-accent/15 text-accent",
+  bar: "bg-accent/60",
+  border: "border-accent/20",
 };
 
 const STYLES: Record<string, ToolStyle> = {
@@ -62,10 +62,10 @@ const STYLES: Record<string, ToolStyle> = {
   },
   write: {
     Icon: FilePlus2,
-    text: "text-violet-300",
-    chip: "bg-violet-500/15 text-violet-300",
-    bar: "bg-violet-500/60",
-    border: "border-violet-500/20",
+    text: "text-accent",
+    chip: "bg-accent/15 text-accent",
+    bar: "bg-accent/60",
+    border: "border-accent/20",
   },
   edit: {
     Icon: FilePen,
@@ -147,7 +147,7 @@ const STYLES: Record<string, ToolStyle> = {
 };
 
 export function styleForTool(toolName: string | undefined | null): ToolStyle {
-  if (!toolName) return VIOLET;
+  if (!toolName) return DEFAULT_STYLE;
   const key = toolName.toLowerCase().replace(/[^a-z0-9]/g, "");
-  return STYLES[key] ?? VIOLET;
+  return STYLES[key] ?? DEFAULT_STYLE;
 }

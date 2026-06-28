@@ -514,7 +514,7 @@ function SystemHealthTab() {
             >
               <div className="text-center cursor-default">
                 <p className="text-[9px] text-gray-600 uppercase">Compact</p>
-                <p className="text-xs font-mono font-bold text-violet-400">
+                <p className="text-xs font-mono font-bold text-accent">
                   {workflow.compaction?.totalCompactions ?? 0}
                 </p>
               </div>
@@ -554,7 +554,7 @@ function SystemHealthTab() {
                 totalTokens > 0 ? ((m.input_tokens + m.output_tokens) / totalTokens) * 100 : 0;
               const colors = [
                 "bg-blue-400",
-                "bg-violet-400",
+                "bg-accent",
                 "bg-emerald-400",
                 "bg-amber-400",
                 "bg-pink-400",
@@ -596,7 +596,7 @@ function SystemHealthTab() {
         <div className="card p-5 flex flex-col gap-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <BarChart3 className="w-4 h-4 text-violet-400" />
+              <BarChart3 className="w-4 h-4 text-accent" />
               <span className="text-xs text-gray-500 uppercase tracking-wider">Concurrency</span>
             </div>
             <span className="text-[10px] font-mono text-gray-500">{lanes.length} intervals</span>
@@ -690,11 +690,11 @@ function SystemHealthTab() {
                 "bg-amber-400",
                 "bg-blue-400",
                 "bg-emerald-400",
-                "bg-violet-400",
+                "bg-accent",
                 "bg-pink-400",
                 "bg-cyan-400",
                 "bg-red-400",
-                "bg-indigo-400",
+                "bg-accent",
               ];
               return (
                 <Tip
@@ -732,7 +732,7 @@ function SystemHealthTab() {
         <div className="card p-5 flex flex-col gap-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <GitBranch className="w-4 h-4 text-violet-400" />
+              <GitBranch className="w-4 h-4 text-accent" />
               <span className="text-xs text-gray-500 uppercase tracking-wider">
                 Subagent Effectiveness
               </span>
@@ -1158,7 +1158,7 @@ export function Dashboard() {
               label={t("activeSubagents")}
               value={stats ? allSubagents.filter((a) => a.status === "working").length : ""}
               icon={GitBranch}
-              accentColor="text-violet-400"
+              accentColor="text-accent"
               trend={stats ? `${allSubagents.length}${t("totalTrend")}` : undefined}
               loading={!stats}
             />
@@ -1175,7 +1175,7 @@ export function Dashboard() {
               value={stats ? fmt(stats.total_events) : ""}
               raw={stats ? stats.total_events.toLocaleString() : undefined}
               icon={Activity}
-              accentColor="text-violet-400"
+              accentColor="text-accent"
               loading={!stats}
             />
             <StatCard
@@ -1252,7 +1252,7 @@ export function Dashboard() {
                                 empty rather than as a misalignment. */}
                             {!hasChildren && !isSubagent && (
                               <span
-                                className="w-6 h-6 flex-shrink-0 flex items-center justify-center text-violet-400/70"
+                                className="w-6 h-6 flex-shrink-0 flex items-center justify-center text-accent/70"
                                 aria-hidden="true"
                                 title={t("common:noSubagents", "No subagents")}
                               >
@@ -1260,7 +1260,7 @@ export function Dashboard() {
                               </span>
                             )}
                             {isSubagent && (
-                              <GitBranch className="w-3 h-3 text-violet-400 flex-shrink-0" />
+                              <GitBranch className="w-3 h-3 text-accent flex-shrink-0" />
                             )}
                             <div className="flex-1 min-w-0">
                               <AgentCard
@@ -1272,7 +1272,7 @@ export function Dashboard() {
                           </div>
 
                           {hasChildren && isExpanded && (
-                            <div className="ml-6 mt-1 space-y-1 border-l-2 border-violet-500/20 pl-3">
+                            <div className="ml-6 mt-1 space-y-1 border-l border-border pl-3">
                               {children.map((child) => renderAgentNode(child, depth + 1))}
                             </div>
                           )}
@@ -1282,7 +1282,7 @@ export function Dashboard() {
                               onClick={() =>
                                 setExpandedAgents((prev) => new Set([...prev, agent.id]))
                               }
-                              className="ml-7 mt-1 text-[11px] text-violet-400 hover:text-violet-300 transition-colors"
+                              className="ml-7 mt-1 text-[11px] text-accent hover:text-accent-hover transition-colors"
                             >
                               {totalDesc} {t("common:subagent", { count: totalDesc })}
                               {activeDesc > 0 && (

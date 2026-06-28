@@ -11,7 +11,7 @@
 @layer base {
   * {
     scrollbar-width: thin;
-    scrollbar-color: #2a2a3d #0c0c14;
+    scrollbar-color: oklch(0.24 0.01 35) oklch(0.1 0.004 35);
   }
 
   *::-webkit-scrollbar {
@@ -20,21 +20,21 @@
   }
 
   *::-webkit-scrollbar-track {
-    background: #0c0c14;
+    background: oklch(0.1 0.004 35);
   }
 
   *::-webkit-scrollbar-thumb {
-    background: #2a2a3d;
+    background: oklch(0.24 0.01 35);
     border-radius: 3px;
   }
 
   *::-webkit-scrollbar-thumb:hover {
-    background: #363650;
+    background: oklch(0.34 0.012 35);
   }
 
   ::selection {
-    background: rgba(99, 102, 241, 0.3);
-    color: #e4e4ed;
+    background: oklch(0.72 0.13 55 / 0.25);
+    color: oklch(0.92 0.004 35);
   }
 
   ::-webkit-calendar-picker-indicator {
@@ -52,42 +52,85 @@
     display: none;
     -webkit-appearance: none;
   }
+
+  /* Visible focus indicators — accessible by default */
+  *:focus-visible {
+    outline: 2px solid oklch(0.72 0.13 55);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  /* Display font utility for headings */
+  h1,
+  h2,
+  h3 {
+    font-family: "Satoshi", "Hanken Grotesk", sans-serif;
+    letter-spacing: -0.02em;
+  }
 }
 
 @layer components {
+  /* Container — lighter touch than a full card. Use sparingly. */
   .card {
     @apply bg-surface-3 border border-border rounded-xl;
   }
 
   .card-hover {
-    @apply card transition-all duration-200 hover:border-border-light hover:bg-surface-4;
+    @apply card transition-colors duration-150 hover:border-border-light hover:bg-surface-4;
+  }
+
+  /* Dense data cell — replaces the hero-metric StatCard pattern.
+     Compact, instrument-like, no decorative icon. */
+  .data-cell {
+    @apply bg-surface-2 border border-border rounded-lg px-4 py-3;
   }
 
   .btn-primary {
-    @apply inline-flex items-center gap-2 px-4 py-2 bg-accent hover:bg-accent-hover text-white text-sm font-medium rounded-lg transition-colors duration-150;
+    @apply inline-flex items-center gap-2 px-4 py-2 bg-accent hover:bg-accent-hover text-surface-0 text-sm font-semibold rounded-lg transition-colors duration-150;
   }
 
   .btn-ghost {
-    @apply inline-flex items-center gap-2 px-3 py-1.5 text-sm text-gray-400 hover:text-gray-200 hover:bg-surface-4 rounded-lg transition-colors duration-150;
+    @apply inline-flex items-center gap-2 px-3 py-1.5 text-sm text-ink-muted hover:text-ink hover:bg-surface-4 rounded-lg transition-colors duration-150;
   }
 
+  /* Status badge — full border, no side-stripe. Background tint + text. */
   .badge {
-    @apply inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-medium rounded-full border whitespace-nowrap shrink-0;
+    @apply inline-flex items-center gap-1.5 px-2.5 py-0.5 text-xs font-medium rounded border whitespace-nowrap shrink-0;
   }
 
   .input {
-    @apply bg-surface-2 border border-border rounded-lg px-3 py-2 text-sm text-gray-200 placeholder-gray-500 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/30 transition-colors;
+    @apply bg-surface-2 border border-border rounded-lg px-3 py-2 text-sm text-ink placeholder:text-ink-faint focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/30 transition-colors;
+  }
+
+  /* Section label — small caps style for panel headers */
+  .label-caps {
+    @apply text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-ink-faint;
   }
 }
 
 @layer utilities {
-  /* Hide the scrollbar on horizontally scrollable strips (e.g. the Settings
-     TOC) where chevron affordances replace it. */
   .no-scrollbar {
     scrollbar-width: none;
   }
   .no-scrollbar::-webkit-scrollbar {
     display: none;
+  }
+
+  /* Stagger animation delays for list items */
+  .stagger-1 {
+    animation-delay: 0.05s;
+  }
+  .stagger-2 {
+    animation-delay: 0.1s;
+  }
+  .stagger-3 {
+    animation-delay: 0.15s;
+  }
+  .stagger-4 {
+    animation-delay: 0.2s;
+  }
+  .stagger-5 {
+    animation-delay: 0.25s;
   }
 }
 

@@ -69,16 +69,16 @@ function useTooltip() {
 // ── Heatmap ──────────────────────────────────────────────────────────────────
 
 function cellColor(count: number, max: number) {
-  if (count === 0) return "#161625";
-  // Log scale + RGB interpolation across a wide color ramp for maximum perceptual range
+  if (count === 0) return "#1a1714";
+  // Log scale + RGB interpolation across a warm amber ramp
   const t = Math.log(count + 1) / Math.log(Math.max(max, 1) + 1);
-  // Ramp: near-black indigo → deep indigo → bright indigo → lavender
+  // Ramp: near-black amber → deep amber → bright amber → light amber
   type RGB = [number, number, number];
   const stops: RGB[] = [
-    [22, 20, 60], // near-black indigo
-    [55, 48, 163], // deep indigo
-    [99, 102, 241], // bright indigo
-    [199, 210, 254], // lavender
+    [30, 22, 10], // near-black amber
+    [100, 70, 15], // deep amber
+    [180, 130, 35], // bright amber
+    [253, 224, 140], // light amber
   ];
   const scaled = t * (stops.length - 1);
   const lo = Math.min(Math.floor(scaled), stops.length - 2);
@@ -825,7 +825,7 @@ export function Analytics() {
   const EVENT_TYPE_COLORS: Record<string, string> = {
     PreToolUse: "bg-emerald-400",
     PostToolUse: "bg-blue-400",
-    Stop: "bg-violet-400",
+    Stop: "bg-accent",
     SubagentStop: "bg-yellow-400",
     Notification: "bg-orange-400",
   };
@@ -902,7 +902,7 @@ export function Analytics() {
           raw={data ? totalTokens.toLocaleString() : undefined}
           sub={data ? `${cacheHitPct}${t("cacheHitRate")}` : undefined}
           icon={Cpu}
-          color="text-violet-400"
+          color="text-accent"
           loading={!data}
         />
         <StatPill
@@ -1021,7 +1021,7 @@ export function Analytics() {
                       {
                         label: t("common:token.cacheRead"),
                         value: data?.tokens.total_cache_read ?? 0,
-                        color: "bg-violet-400",
+                        color: "bg-accent",
                       },
                       {
                         label: t("common:token.cacheWrite"),
@@ -1047,7 +1047,7 @@ export function Analytics() {
                     </div>
                     <div className="flex justify-between text-xs text-gray-500">
                       <span>{t("cacheEfficiency")}</span>
-                      <span className="text-violet-400 font-mono">{cacheHitPct}%</span>
+                      <span className="text-accent font-mono">{cacheHitPct}%</span>
                     </div>
                   </div>
                 </div>
@@ -1070,7 +1070,7 @@ export function Analytics() {
                       {
                         label: t("common:token.cacheRead"),
                         value: data?.tokens.total_cache_read ?? 0,
-                        color: "text-violet-400",
+                        color: "text-accent",
                       },
                       {
                         label: t("common:token.cacheWrite"),
@@ -1242,7 +1242,7 @@ export function Analytics() {
                           label={subagent_type}
                           count={count}
                           max={maxAgentTypeCount}
-                          color="bg-violet-400"
+                          color="bg-accent"
                         />
                       ))}
                     </div>

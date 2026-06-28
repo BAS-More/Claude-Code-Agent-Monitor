@@ -112,7 +112,7 @@ function renderInput(toolUse: TranscriptContent) {
     return (
       <div className="space-y-2">
         <div className="flex items-center gap-1.5 text-xs text-gray-400">
-          <FileText className="w-3.5 h-3.5 text-violet-400" />
+          <FileText className="w-3.5 h-3.5 text-accent" />
           <span className="font-mono">{obj.file_path}</span>
           {obj.replace_all === true && (
             <span className="text-[10px] uppercase tracking-wider text-amber-300/80 bg-amber-500/10 border border-amber-500/20 rounded px-1.5 py-0.5">

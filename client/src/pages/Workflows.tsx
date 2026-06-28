@@ -154,7 +154,7 @@ export function Workflows() {
       <div className="card p-4 space-y-3">
         <div>
           <h2 className="text-sm font-semibold text-gray-200 flex items-center gap-2">
-            <Workflow className="w-4 h-4 text-violet-400" />
+            <Workflow className="w-4 h-4 text-accent" />
             {t("runs.title")}
           </h2>
           <p className="text-xs text-gray-500 mt-0.5">{t("runs.subtitle")}</p>

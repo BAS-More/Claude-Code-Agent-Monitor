@@ -905,12 +905,10 @@ function TabPanel({
 type Tone =
   | "sky"
   | "emerald"
-  | "violet"
   | "amber"
   | "fuchsia"
   | "cyan"
   | "pink"
-  | "indigo"
   | "orange"
   | "teal"
   | "slate"
@@ -927,12 +925,6 @@ const TONES: Record<Tone, { iconBg: string; iconText: string; bar: string; ring:
     iconText: "text-emerald-300",
     bar: "bg-emerald-500/40",
     ring: "ring-emerald-500/20",
-  },
-  violet: {
-    iconBg: "bg-violet-500/10",
-    iconText: "text-violet-300",
-    bar: "bg-violet-500/40",
-    ring: "ring-violet-500/20",
   },
   amber: {
     iconBg: "bg-amber-500/10",
@@ -957,12 +949,6 @@ const TONES: Record<Tone, { iconBg: string; iconText: string; bar: string; ring:
     iconText: "text-pink-300",
     bar: "bg-pink-500/40",
     ring: "ring-pink-500/20",
-  },
-  indigo: {
-    iconBg: "bg-indigo-500/10",
-    iconText: "text-indigo-300",
-    bar: "bg-indigo-500/40",
-    ring: "ring-indigo-500/20",
   },
   orange: {
     iconBg: "bg-orange-500/10",
@@ -1015,7 +1001,7 @@ function OverviewPanel({ overview }: { overview: CcOverview | null }) {
           />
           <RootRow
             icon={FolderTree}
-            tone="violet"
+            tone="orange"
             label={t("overview.projectRoot")}
             value={roots.projectRoot}
           />
@@ -1062,7 +1048,7 @@ function OverviewPanel({ overview }: { overview: CcOverview | null }) {
             project={counts.outputStyles.project}
           />
           <SummaryStat
-            tone="indigo"
+            tone="teal"
             icon={Server}
             label={t("tabs.mcp")}
             user={counts.mcpServers.user}
@@ -1809,7 +1795,7 @@ function CurrentConfigPanel({ sources }: { sources: CcSettingsSource[] }) {
   return (
     <div className="rounded-lg border border-border bg-surface-2">
       <div className="border-b border-border px-4 py-2.5 flex items-center gap-2">
-        <SettingsIcon className="w-3.5 h-3.5 text-violet-300/80" />
+        <SettingsIcon className="w-3.5 h-3.5 text-ink-muted" />
         <span className="text-sm font-medium text-gray-100">Current configuration</span>
         <span className="text-[11px] text-gray-500 ml-auto">
           {setCount} option{setCount !== 1 ? "s" : ""} set · the rest use defaults
@@ -2633,7 +2619,7 @@ function ScopeBadge({ scope }: { scope: string }) {
       : scope === "project"
         ? "bg-emerald-500/10 text-emerald-300 border-emerald-500/30"
         : scope === "project-local"
-          ? "bg-violet-500/10 text-violet-300 border-violet-500/30"
+          ? "bg-accent/10 text-accent border-accent/30"
           : "bg-surface-3 text-gray-400 border-border";
   const label =
     scope === "project-local"

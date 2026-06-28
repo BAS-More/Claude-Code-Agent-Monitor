@@ -1177,7 +1177,7 @@ export function Settings() {
                 setClaudeHomeInput(e.target.value);
                 setClaudeHomeError(null);
               }}
-              className="flex-1 bg-surface-4 border border-surface-3 rounded-lg px-3 py-2 text-sm text-gray-200 font-mono focus:outline-none focus:border-violet-500/50"
+              className="flex-1 bg-surface-4 border border-surface-3 rounded-lg px-3 py-2 text-sm text-gray-200 font-mono focus:outline-none focus:border-accent/50"
               placeholder={t("claudeHome.placeholder")}
             />
             <button
@@ -1323,7 +1323,7 @@ export function Settings() {
                   />
                 </div>
                 <div className="flex items-center gap-3 bg-surface-2 rounded-lg px-3.5 py-3">
-                  <CheckCircle className="w-4 h-4 text-violet-400 flex-shrink-0" />
+                  <CheckCircle className="w-4 h-4 text-accent flex-shrink-0" />
                   <Toggle
                     checked={notifPrefs.onSessionComplete}
                     onChange={(v) => updateNotifPrefs({ onSessionComplete: v })}
@@ -1418,7 +1418,7 @@ export function Settings() {
                   const tableIcons: Record<string, React.ReactNode> = {
                     sessions: <Layers className="w-4 h-4 text-blue-400" />,
                     agents: <Users className="w-4 h-4 text-emerald-400" />,
-                    events: <Activity className="w-4 h-4 text-violet-400" />,
+                    events: <Activity className="w-4 h-4 text-accent" />,
                     token_usage: <Coins className="w-4 h-4 text-amber-400" />,
                     model_pricing: <BarChart3 className="w-4 h-4 text-cyan-400" />,
                   };
@@ -1432,14 +1432,14 @@ export function Settings() {
                   const tableColors: Record<string, string> = {
                     sessions: "border-blue-500/20",
                     agents: "border-emerald-500/20",
-                    events: "border-violet-500/20",
+                    events: "border-border",
                     token_usage: "border-amber-500/20",
                     model_pricing: "border-cyan-500/20",
                   };
                   return Object.entries(sysInfo.db.counts).map(([table, count]) => (
                     <div
                       key={table}
-                      className={`bg-surface-2 rounded-lg px-3 py-3 border-l-2 ${tableColors[table] || "border-gray-500/20"}`}
+                      className={`bg-surface-2 rounded-lg px-3 py-3 border-l border-border`}
                     >
                       <div className="flex items-center gap-2 mb-1.5">
                         {tableIcons[table] || <Database className="w-4 h-4 text-gray-500" />}
@@ -1453,9 +1453,9 @@ export function Settings() {
                     </div>
                   ));
                 })()}
-                <div className="bg-surface-2 rounded-lg px-3 py-3 border-l-2 border-indigo-500/20">
+                <div className="bg-surface-2 rounded-lg px-3 py-3 border-l border-border">
                   <div className="flex items-center gap-2 mb-1.5">
-                    <HardDrive className="w-4 h-4 text-indigo-400" />
+                    <HardDrive className="w-4 h-4 text-accent" />
                     <p className="text-[11px] text-gray-500 uppercase tracking-wider">
                       {t("data.dbSize")}
                     </p>
@@ -1618,7 +1618,7 @@ export function Settings() {
               </div>
               <div className="bg-surface-2 rounded-lg px-4 py-3">
                 <div className="flex items-center gap-2 mb-1.5">
-                  <Globe className="w-4 h-4 text-violet-400" />
+                  <Globe className="w-4 h-4 text-accent" />
                   <p className="text-[11px] text-gray-500 uppercase tracking-wider">
                     {t("about.platform")}
                   </p>

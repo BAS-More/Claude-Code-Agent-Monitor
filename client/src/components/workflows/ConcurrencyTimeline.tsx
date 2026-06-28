@@ -9,7 +9,7 @@ import type { ConcurrencyData, ConcurrencyLane } from "../../lib/types";
 
 // ── Color palette ─────────────────────────────────────────────────────────────
 
-const MAIN_COLOR = "#6366f1"; // indigo
+const MAIN_COLOR = "#c8902c"; // warm amber
 
 const SUBAGENT_PALETTE = [
   "#10b981", // emerald

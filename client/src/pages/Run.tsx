@@ -1466,13 +1466,9 @@ function TokenMeter({ stats }: { stats: TokenStats }) {
   const total = stats.inputTokens + stats.cacheReadTokens + stats.cacheCreationTokens;
   const cap = stats.contextWindow ?? DEFAULT_CONTEXT_WINDOW;
   const pct = Math.min(100, Math.round((total / cap) * 100));
-  const tone = pct >= 95 ? "red" : pct >= 80 ? "amber" : "indigo";
+  const tone = pct >= 95 ? "red" : pct >= 80 ? "amber" : "teal";
   const barColor =
-    tone === "red"
-      ? "bg-red-500"
-      : tone === "amber"
-        ? "bg-amber-500"
-        : "bg-gradient-to-r from-cyan-500 to-indigo-500";
+    tone === "red" ? "bg-red-500" : tone === "amber" ? "bg-amber-500" : "bg-teal-500";
   return (
     <div className="border-t border-border px-4 py-2 flex items-center gap-3 text-[11px] text-gray-400 flex-wrap">
       <span className="inline-flex items-center gap-1.5">
@@ -1571,7 +1567,7 @@ function commandSourceTone(s: SlashCommand["source"]): string {
       ? "bg-sky-500/10 text-sky-300 border-sky-500/30"
       : s === "project"
         ? "bg-emerald-500/10 text-emerald-300 border-emerald-500/30"
-        : "bg-violet-500/10 text-violet-300 border-violet-500/30";
+        : "bg-accent/10 text-accent border-accent/30";
 }
 
 /**
@@ -3354,10 +3350,10 @@ function UserTurn({ env }: { env: UserMessage }) {
 
   return (
     <div className="flex gap-3">
-      <Avatar tone="indigo" letter={t("events.you").charAt(0)} />
+      <Avatar tone="user" letter={t("events.you").charAt(0)} />
       <div className="flex-1 min-w-0">
-        <div className="text-[11px] font-semibold text-indigo-300 mb-1">{t("events.you")}</div>
-        <div className="rounded-lg border border-indigo-500/20 bg-indigo-500/5 px-3 py-2 text-sm text-gray-200 whitespace-pre-wrap break-words">
+        <div className="text-[11px] font-semibold text-ink-muted mb-1">{t("events.you")}</div>
+        <div className="rounded-lg border border-border bg-surface-3 px-3 py-2 text-sm text-ink whitespace-pre-wrap break-words">
           {text || "-"}
         </div>
       </div>
@@ -3410,17 +3406,17 @@ function ThinkingBlock({ text }: { text: string }) {
   const [open, setOpen] = useState(false);
   if (!text) return null;
   return (
-    <div className="rounded-md border border-violet-500/20 bg-violet-500/5">
+    <div className="rounded-md border border-border bg-surface-3">
       <button
         onClick={() => setOpen((v) => !v)}
-        className="w-full flex items-center gap-2 px-2.5 py-1.5 text-[11px] font-medium text-violet-300 hover:bg-violet-500/10 transition-colors"
+        className="w-full flex items-center gap-2 px-2.5 py-1.5 text-[11px] font-medium text-ink-muted hover:bg-surface-4 transition-colors"
       >
         {open ? <ChevronDown className="w-3 h-3" /> : <ChevronRight className="w-3 h-3" />}
         <Sparkles className="w-3 h-3" />
         {t("events.thinking")}
       </button>
       {open && (
-        <pre className="px-3 py-2 text-[11px] font-mono text-violet-200/80 whitespace-pre-wrap break-words border-t border-violet-500/20">
+        <pre className="px-3 py-2 text-[11px] font-mono text-ink-faint whitespace-pre-wrap break-words border-t border-border">
           {text}
         </pre>
       )}
@@ -3520,11 +3516,11 @@ function UnknownTurn({ env }: { env: Envelope }) {
   );
 }
 
-function Avatar({ tone, letter }: { tone: "accent" | "indigo"; letter: string }) {
+function Avatar({ tone, letter }: { tone: "accent" | "user"; letter: string }) {
   const cls =
     tone === "accent"
       ? "bg-accent/15 text-accent border-accent/30"
-      : "bg-indigo-500/15 text-indigo-300 border-indigo-500/30";
+      : "bg-surface-4 text-ink-muted border-border";
   return (
     <div
       className={`w-7 h-7 rounded-md border flex items-center justify-center text-[11px] font-bold flex-shrink-0 ${cls}`}

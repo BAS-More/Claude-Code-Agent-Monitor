@@ -317,7 +317,7 @@ export function CompactionImpact({ data }: CompactionImpactProps) {
           label={t("compaction.sessionsAffected")}
           value={affected.toLocaleString()}
           sub={t("compaction.ofTotal", { total: data.totalSessions.toLocaleString() })}
-          accent="text-violet-300"
+          accent="text-accent-hover"
         />
         <StatBox
           label={t("compaction.avgPerSession")}

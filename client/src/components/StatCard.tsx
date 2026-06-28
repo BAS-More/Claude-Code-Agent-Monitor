@@ -31,24 +31,22 @@ export function StatCard({
   loading = false,
 }: StatCardProps) {
   return (
-    <div className="card p-5">
-      <div className="flex items-center justify-between gap-3 mb-3">
-        <span className="text-xs font-medium text-gray-500 uppercase tracking-wider truncate">
-          {label}
-        </span>
-        <Icon className={`w-5 h-5 flex-shrink-0 ${accentColor}`} />
+    <div className="data-cell">
+      <div className="flex items-baseline justify-between gap-2 mb-1">
+        <span className="label-caps">{label}</span>
+        <Icon className={`w-3.5 h-3.5 flex-shrink-0 ${accentColor} opacity-70`} />
       </div>
-      <div className="flex items-end gap-2 min-w-0">
+      <div className="flex items-baseline gap-2 min-w-0">
         {loading ? (
           <StatValueSkeleton />
         ) : (
           <Tip raw={raw}>
-            <span className="text-2xl font-semibold text-gray-100 truncate">{value}</span>
+            <span className="text-xl font-display font-semibold text-ink tabular-nums truncate">
+              {value}
+            </span>
           </Tip>
         )}
-        {!loading && trend && (
-          <span className="text-xs text-gray-500 mb-1 flex-shrink-0">{trend}</span>
-        )}
+        {!loading && trend && <span className="text-xs text-ink-faint flex-shrink-0">{trend}</span>}
       </div>
     </div>
   );

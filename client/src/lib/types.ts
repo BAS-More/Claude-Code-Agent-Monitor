@@ -671,21 +671,21 @@ export const STATUS_CONFIG: Record<
 > = {
   working: {
     labelKey: "common:status.working",
-    color: "text-emerald-400",
-    bg: "bg-emerald-500/10 border-emerald-500/20",
-    dot: "bg-emerald-400",
+    color: "text-teal-400",
+    bg: "bg-teal-500/10 border-teal-500/20",
+    dot: "bg-teal-400",
   },
   waiting: {
     labelKey: "common:status.waiting",
-    color: "text-yellow-400",
-    bg: "bg-yellow-500/10 border-yellow-500/20",
-    dot: "bg-yellow-400",
+    color: "text-amber-400",
+    bg: "bg-amber-500/10 border-amber-500/20",
+    dot: "bg-amber-400",
   },
   completed: {
     labelKey: "common:status.completed",
-    color: "text-violet-400",
-    bg: "bg-violet-500/10 border-violet-500/20",
-    dot: "bg-violet-400",
+    color: "text-green-400",
+    bg: "bg-green-500/10 border-green-500/20",
+    dot: "bg-green-400",
   },
   error: {
     labelKey: "common:status.error",
@@ -759,21 +759,21 @@ export const SESSION_STATUS_CONFIG: Record<
 > = {
   active: {
     labelKey: "common:status.active",
-    color: "text-emerald-400",
-    bg: "bg-emerald-500/10 border-emerald-500/20",
-    dot: "bg-emerald-400",
+    color: "text-teal-400",
+    bg: "bg-teal-500/10 border-teal-500/20",
+    dot: "bg-teal-400",
   },
   waiting: {
     labelKey: "common:status.waiting",
-    color: "text-yellow-400",
-    bg: "bg-yellow-500/10 border-yellow-500/20",
-    dot: "bg-yellow-400",
+    color: "text-amber-400",
+    bg: "bg-amber-500/10 border-amber-500/20",
+    dot: "bg-amber-400",
   },
   completed: {
     labelKey: "common:status.completed",
-    color: "text-violet-400",
-    bg: "bg-violet-500/10 border-violet-500/20",
-    dot: "bg-violet-400",
+    color: "text-green-400",
+    bg: "bg-green-500/10 border-green-500/20",
+    dot: "bg-green-400",
   },
   error: {
     labelKey: "common:status.error",
@@ -782,7 +782,7 @@ export const SESSION_STATUS_CONFIG: Record<
     dot: "bg-red-400",
   },
   abandoned: {
-    // Muted slate distinguishes "given up / faded out" from yellow Waiting
+    // Muted slate distinguishes "given up / faded out" from amber Waiting
     // (attention required).
     labelKey: "common:status.abandoned",
     color: "text-slate-400",

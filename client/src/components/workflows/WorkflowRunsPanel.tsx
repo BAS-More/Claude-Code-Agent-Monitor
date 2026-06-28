@@ -59,7 +59,7 @@ function statusClass(status: string): string {
 // (e.g. Scout / Verify / Synthesize, or Explain / Interview / Gotcha) reads
 // as its own color in both the filter row and the result label chips.
 const PHASE_PALETTE = [
-  "bg-violet-500/15 text-violet-300 border-violet-500/40",
+  "bg-accent/15 text-accent border-accent/40",
   "bg-sky-500/15 text-sky-300 border-sky-500/40",
   "bg-amber-500/15 text-amber-300 border-amber-500/40",
   "bg-emerald-500/15 text-emerald-300 border-emerald-500/40",
@@ -259,7 +259,7 @@ export function WorkflowRunsPanel({
   if (!controlled && loading) {
     return (
       <div className="flex items-center justify-center gap-2 py-8 text-sm text-gray-500">
-        <Loader2 className="w-4 h-4 animate-spin text-violet-400" />
+        <Loader2 className="w-4 h-4 animate-spin text-accent" />
         <span className="animate-pulse">{t("runs.loading")}</span>
       </div>
     );
@@ -303,7 +303,7 @@ export function WorkflowRunsPanel({
               {running ? (
                 <Loader2 className="w-4 h-4 text-amber-400 flex-shrink-0 animate-spin" />
               ) : (
-                <Workflow className="w-4 h-4 text-violet-400 flex-shrink-0" />
+                <Workflow className="w-4 h-4 text-accent flex-shrink-0" />
               )}
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 flex-wrap">
@@ -331,7 +331,7 @@ export function WorkflowRunsPanel({
                 <Link
                   to={`/sessions/${encodeURIComponent(run.session_id)}`}
                   onClick={(e) => e.stopPropagation()}
-                  className="text-gray-500 hover:text-violet-400 transition-colors flex-shrink-0"
+                  className="text-gray-500 hover:text-accent transition-colors flex-shrink-0"
                   title={t("runs.openSession")}
                 >
                   <ExternalLink className="w-3.5 h-3.5" />
@@ -503,7 +503,7 @@ export function WorkflowRunsPanel({
                                 <span>{t("runs.tools", { count: a.toolCalls || 0 })}</span>
                                 {a.durationMs != null && <span>{formatMs(a.durationMs)}</span>}
                                 {ts?.loading && (
-                                  <span className="flex items-center gap-1 text-violet-400">
+                                  <span className="flex items-center gap-1 text-accent">
                                     <Loader2 className="w-3 h-3 animate-spin" />
                                     {t("runs.loadingFull")}
                                   </span>

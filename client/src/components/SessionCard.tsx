@@ -46,11 +46,7 @@ export function SessionCard({ session, onClick }: SessionCardProps) {
     <div
       onClick={handleClick}
       className={`card-hover p-4 cursor-pointer animate-fade-in overflow-hidden ${
-        isWaiting
-          ? "border-l-2 border-l-yellow-500/60"
-          : isActive
-            ? "border-l-2 border-l-emerald-500/50"
-            : ""
+        isWaiting ? "bg-amber-500/[0.04]" : isActive ? "bg-teal-500/[0.04]" : ""
       }`}
     >
       <div className="flex items-start justify-between gap-2 mb-3 min-w-0">

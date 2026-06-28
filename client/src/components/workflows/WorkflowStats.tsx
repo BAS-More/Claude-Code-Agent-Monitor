@@ -277,7 +277,7 @@ export function WorkflowStats({ stats }: WorkflowStatsProps) {
         label={t("stats.avgAgentDepth")}
         value={stats.avgDepth.toFixed(1)}
         icon={GitFork}
-        accentClass="text-indigo-400"
+        accentClass="text-accent"
         calculationKey="stats.tooltip.calc.depth"
         interp={interpAvgDepth(stats.avgDepth)}
         metricPhraseKey="stats.tooltip.phrase.depth"
@@ -304,7 +304,7 @@ export function WorkflowStats({ stats }: WorkflowStatsProps) {
         label={t("stats.mostCommonFlow")}
         value={topFlowLabel}
         icon={ArrowRightLeft}
-        accentClass="text-violet-400"
+        accentClass="text-accent"
         calculationKey="stats.tooltip.calc.topFlow"
         interp={interpTopFlow(topFlow?.source ?? null, topFlow?.target ?? null)}
         metricPhraseKey="stats.tooltip.phrase.topFlow"

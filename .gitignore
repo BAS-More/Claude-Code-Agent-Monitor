@@ -68,3 +68,8 @@ coverage/
 # Playwright MCP
 .playwright_mcp/
 .playwright-mcp/
+
+# Packaged extension build output — publish via Releases, don't commit.
+# Current shipped version kept tracked via the exception below.
+vscode-extension/*.vsix
+!vscode-extension/claude-code-agent-monitor-1.2.4.vsix

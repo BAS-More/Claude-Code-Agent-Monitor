@@ -5,7 +5,7 @@
  */
 
 import { randomUUID } from "node:crypto";
-import type { Express, Request, Response } from "express";
+import type { Express, NextFunction, Request, Response } from "express";
 import { createMcpExpressApp } from "@modelcontextprotocol/sdk/server/express.js";
 import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
 import { SSEServerTransport } from "@modelcontextprotocol/sdk/server/sse.js";
@@ -40,6 +40,41 @@ export async function startHttpServer(
       transport: "http",
       uptime: process.uptime(),
       activeSessions: transports.size,
+    });
+  });
+
+  // ── Host-header / DNS-rebinding guard (GHSA-gr74-4xfh-6jw9) ────
+  // Mounted AFTER /health (kept open) and BEFORE /mcp, /sse, /messages so it
+  // guards only the MCP endpoints. The loopback bind is the default defense;
+  // this also refuses a LAN bind (MCP_HTTP_HOST) or a webpage DNS-rebinding to
+  // the loopback server. LAN operators opt extra Host names in explicitly via
+  // MCP_ALLOWED_HOSTS (comma-separated).
+  const allowedHosts = new Set<string>();
+  for (const name of ["localhost", "127.0.0.1", "::1", "[::1]", config.httpHost]) {
+    if (!name) continue;
+    const n = name.toLowerCase();
+    allowedHosts.add(n);
+    allowedHosts.add(`${n}:${config.httpPort}`);
+  }
+  for (const extra of (process.env.MCP_ALLOWED_HOSTS || "")
+    .split(",")
+    .map((s) => s.trim().toLowerCase())
+    .filter(Boolean)) {
+    allowedHosts.add(extra);
+  }
+  app.use((req: Request, res: Response, next: NextFunction): void => {
+    const host = String(req.headers.host || "").toLowerCase();
+    // Empty Host (local CLI / HTTP/1.0) is allowed; otherwise match with or
+    // without the :port suffix.
+    if (host === "" || allowedHosts.has(host) || allowedHosts.has(host.split(":")[0] ?? "")) {
+      next();
+      return;
+    }
+    logger.info("Rejected request: Host not allowed", { host, path: req.path });
+    res.status(403).json({
+      jsonrpc: "2.0",
+      error: { code: -32000, message: "Forbidden: Host not allowed" },
+      id: null,
     });
   });
 

@@ -93,7 +93,10 @@ function sanitiseCwd(input) {
   return resolved;
 }
 
-const ALLOWED_PERMISSION_MODES = new Set(["acceptEdits", "default", "plan", "bypassPermissions"]);
+// bypassPermissions is intentionally excluded from this base set: it auto-approves
+// EVERY tool call (code-execution-equivalent) and must not be selectable over HTTP
+// by default. It is re-enabled per request only when RUN_ALLOW_BYPASS=1 (see POST /).
+const ALLOWED_PERMISSION_MODES = new Set(["acceptEdits", "default", "plan"]);
 
 router.get("/", (_req, res) => {
   res.json({
@@ -261,8 +264,11 @@ router.post("/", (req, res) => {
   const resumeSessionId =
     typeof body.resumeSessionId === "string" && body.resumeSessionId ? body.resumeSessionId : null;
   const effort = typeof body.effort === "string" && body.effort ? body.effort : null;
+  const bypassAllowed = process.env.RUN_ALLOW_BYPASS === "1";
   const permissionMode =
-    typeof body.permissionMode === "string" && ALLOWED_PERMISSION_MODES.has(body.permissionMode)
+    typeof body.permissionMode === "string" &&
+    (ALLOWED_PERMISSION_MODES.has(body.permissionMode) ||
+      (body.permissionMode === "bypassPermissions" && bypassAllowed))
       ? body.permissionMode
       : "acceptEdits";
   // Resuming a conversation can spawn with an empty prompt — claude waits

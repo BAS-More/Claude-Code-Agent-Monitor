@@ -52,12 +52,11 @@ function patchRun(args) {
   if (dashboardRuns) dashboardRuns.patchRun(args);
 }
 
-// Effectively uncapped — claude's terminal TUI doesn't gate concurrent
-// sessions, so we don't either. The number is high enough that a buggy
-// client still can't fork-bomb the host before someone notices, but low
-// enough that no human will ever hit it organically. Users who want a
-// real cap can set RUN_MAX_CONCURRENT.
-const MAX_CONCURRENT_DEFAULT = 10000;
+// Default concurrency cap on live `claude` children — over this we throw
+// ECONCURRENCY so the route returns 429, so a buggy or hostile client can't
+// fork-bomb the host. Matches the documented default (see run.js header and
+// JSDoc above). Raise/lower with RUN_MAX_CONCURRENT.
+const MAX_CONCURRENT_DEFAULT = 10;
 const REAP_AFTER_MS = 5 * 60 * 1000; // keep handle for 5 min after exit
 const STDOUT_TAIL_BYTES = 4 * 1024;
 const STDERR_TAIL_BYTES = 4 * 1024;
